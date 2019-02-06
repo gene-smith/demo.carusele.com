@@ -1,0 +1,15 @@
+[{
+        "name": "Some campaign",
+        "campaign": "nuts",
+        "image": {
+            "src": "img/ChekmarkEats-4.jpg"
+        }
+    },
+    {
+        "name": "Some other campaign",
+        "campaign": "fruit",
+        "image": {
+            "src": "img/KatieManwaring-1.jpg"
+        }
+    }
+]

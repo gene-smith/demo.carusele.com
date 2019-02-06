@@ -53,7 +53,10 @@ const Midsection = () => (
                   <p className="title">Middle box</p>
                   <p className="subtitle">With an image</p>
                   <figure className="image is-4by3">
-                    <img src="https://bulma.io/images/placeholders/640x480.png" />
+                    <img
+                      src="https://bulma.io/images/placeholders/640x480.png"
+                      alt=""
+                    />
                   </figure>
                 </article>
               </div>
@@ -145,3 +148,23 @@ const Midsection = () => (
 );
 
 export default Midsection;
+
+/* {
+  allPortfolioJson {
+    edges {
+      node {
+        name
+        campaign
+        image {
+					src {
+            childImageSharp {
+            		resolutions(width: 160, height: 160) {
+              		originalName
+            	}
+            }
+          }
+        }
+      }
+    }
+  }
+} */

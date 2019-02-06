@@ -15,6 +15,8 @@ module.exports = {
   },
   plugins: [
     "gatsby-plugin-react-helmet",
+    "gatsby-transformer-sharp",
+    "gatsby-transformer-json",
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -22,7 +24,13 @@ module.exports = {
         path: `${__dirname}/src/images`
       }
     },
-    "gatsby-transformer-sharp",
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `portfolio`,
+        path: `${__dirname}/src/portfolio`
+      }
+    },
     "gatsby-plugin-sharp",
     {
       resolve: `gatsby-plugin-manifest`,
@@ -33,7 +41,7 @@ module.exports = {
         background_color: "#2980b9",
         theme_color: "#2980b9",
         display: "standalone",
-        icon: "src/images/gatsby-icon.png",
+        icon: "src/images/favicon.png",
         orientation: "portrait"
       }
     },
