@@ -1,5 +1,58 @@
 import React from "react";
+import portfolioData from "../portfolio/portfolioData";
 import "./style.scss";
+
+const Midsection = () => (
+  <div>
+    {portfolioData.map(function(d, index) {
+      return (
+        <div className="card" key={d.id}>
+          <div className="card-image">
+            <figure className="image is-4by3">
+              <img src={d.image.src} alt="campaign photo" />
+            </figure>
+          </div>
+          <div className="card-content">
+            <div className="media-content">
+              <p className="title is-4">{d.name}</p>
+              <p className="subtitle is-6">{d.campaign}</p>
+            </div>
+          </div>
+        </div>
+      );
+    })}
+  </div>
+);
+
+/* 
+
+WORKING TILE-BASED COMPONENT
+const Midsection = () => (
+  <div>
+    <section className="section">
+      <div className="container">
+        <div className="tile is-ancestor">
+          <div className="tile is-parent">
+            {portfolioData.map(function(d, index) {
+              return (
+                <article className="tile is-child box">
+                  <p className="title" key={d.id}>
+                    {d.name}
+                  </p>
+                  <p className="subtitle" key={d.id}>
+                    {d.campaign}
+                  </p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+);
+
+WORKING MANUAL COMPONENT
 
 const Midsection = () => (
   <div>
@@ -144,6 +197,6 @@ const Midsection = () => (
       </div>
     </section>
   </div>
-);
+); */
 
 export default Midsection;

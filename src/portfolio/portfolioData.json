@@ -1,15 +1,17 @@
 [{
+        "id": 1,
         "name": "Some campaign",
         "campaign": "nuts",
         "image": {
-            "src": "img/ChekmarkEats-4.jpg"
+            "src": "/img/ChekmarkEats-4.jpg"
         }
     },
     {
+        "id": 2,
         "name": "Some other campaign",
         "campaign": "fruit",
         "image": {
-            "src": "img/KatieManwaring-1.jpg"
+            "src": "/img/KatieManwaring-1.jpg"
         }
     }
-];
+]
