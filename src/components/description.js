@@ -1,5 +1,5 @@
 import React from "react";
-
+import Video from "./video";
 import "./style.scss";
 import "bulma-helpers/css/bulma-helpers.min.css";
 
@@ -19,6 +19,8 @@ const Description = () => (
         adipisicing sit et est pariatur.
       </p>
     </div>
+
+    <Video />
 
     <div className="container is-fluid has-padding-top-10">
       <p>
