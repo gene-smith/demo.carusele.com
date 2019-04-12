@@ -1,5 +1,4 @@
 import React from "react";
-
 import "./style.scss";
 
 const Midsection = () => (
@@ -148,56 +147,3 @@ const Midsection = () => (
 );
 
 export default Midsection;
-
-/*
-FROM SANITY.IO
-{
-  allSanityCampaign(filter: {
-    campaignID: {
-      elemMatch: {
-        id: {eq: "c6420ea8-33a8-5aa3-a597-6dbcc26b0909"
-        }
-      }
-    }
-  }) {
-    edges {
-      node {
-        title
-        campaignID {
-          id
-          name
-        }
-        contentType {
-          contentType
-        }
-        link
-        mainImage {
-          asset {
-            url
-          }
-        }
-      }
-    }
-  }
-}
-*/
-
-/* {
-  allPortfolioJson {
-    edges {
-      node {
-        name
-        campaign
-        image {
-					src {
-            childImageSharp {
-            		resolutions(width: 160, height: 160) {
-              		originalName
-            	}
-            }
-          }
-        }
-      }
-    }
-  }
-} */

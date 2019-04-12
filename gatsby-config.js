@@ -15,7 +15,7 @@ module.exports = {
   },
   plugins: [
     "gatsby-plugin-react-helmet",
-    {
+    /*     {
       resolve: "gatsby-source-sanity",
       options: {
         projectId: "olj4kf4s",
@@ -26,7 +26,7 @@ module.exports = {
         watchMode: true,
         overlayDrafts: true
       }
-    },
+    }, */
     "gatsby-transformer-sharp",
     "gatsby-transformer-json",
     {
