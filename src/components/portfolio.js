@@ -1,8 +1,31 @@
 import React from "react";
-import portfolioData from "../portfolio/portfolioData";
-import "./style.scss";
+import portfolioData from "../portfolio/data/portfolioData";
 
-const Midsection = () => (
+import "./style.scss";
+import "bulma-helpers/css/bulma-helpers.min.css";
+
+import Img from "gatsby-image";
+import { StaticQuery, graphql } from "gatsby";
+
+const Portfolio = () => (
+  <div>
+    <p>hello</p>
+  </div>
+);
+
+export default Portfolio;
+
+/*
+Steps:
+1. create GraphQL query to transform images in /portfolio/img folder
+  -- I guess do a query for each image and give it a label (ie, ChekmarkEats-4)
+2. create GraphQL query to read portfolioData.json
+  -- update Json file with image labels instead of paths 
+3. combine
+
+*/
+
+/* const Portfolio = () => (
   <div>
     {portfolioData.map(function(d, index) {
       return (
@@ -22,7 +45,7 @@ const Midsection = () => (
       );
     })}
   </div>
-);
+); */
 
 /* 
 
@@ -198,5 +221,3 @@ const Midsection = () => (
     </section>
   </div>
 ); */
-
-export default Midsection;
