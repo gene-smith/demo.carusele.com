@@ -1,13 +1,13 @@
 [{
-        "id": 1,
+        "id": "1",
         "name": "Some campaign",
         "campaign": "nuts",
         "image": {
-            "src": "/img/ChekmarkEats-4.jpg"
+            "src": "portfolio/img/ChekmarkEats-4.jpg"
         }
     },
     {
-        "id": 2,
+        "id": "2",
         "name": "Some other campaign",
         "campaign": "fruit",
         "image": {

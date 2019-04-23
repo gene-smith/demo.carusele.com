@@ -4,7 +4,7 @@ import "./style.scss";
 import Img from "gatsby-image";
 import { StaticQuery, graphql } from "gatsby";
 
-export default () => (
+const Header = () => (
   <StaticQuery
     query={graphql`
       query {
@@ -26,3 +26,5 @@ export default () => (
     )}
   />
 );
+
+export default Header;
