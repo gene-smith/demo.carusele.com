@@ -20,7 +20,9 @@ const Description = () => (
       </p>
     </div>
 
-    <Video />
+    <div className="container is-fluid has-padding-top-10">
+      <Video />
+    </div>
 
     <div className="container is-fluid has-padding-top-10">
       <p>

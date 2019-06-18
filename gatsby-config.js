@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 module.exports = {
   siteMetadata: {
     title: "Carusele Demo Awards Site",
@@ -16,31 +18,37 @@ module.exports = {
   plugins: [
     "gatsby-plugin-react-helmet",
     "gatsby-transformer-sharp",
+    "gatsby-plugin-sharp",
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: "gatsby-source-filesystem",
       options: {
-        name: `images`,
+        name: "images",
         path: `${__dirname}/src/images`
       }
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: "gatsby-source-airtable",
       options: {
-        name: `portfolioimages`,
-        path: `${__dirname}/src/portfolio/img`
+        apiKey: process.env.AIRTABLE_KEY,
+        tables: [
+          {
+            baseId: "appIac8szR6UVNNm6",
+            tableName: "Entries",
+            tableLinks: ["Post_Type", "Campaign"]
+          },
+          {
+            baseId: "appIac8szR6UVNNm6",
+            tableName: "Type"
+          },
+          {
+            baseId: "appIac8szR6UVNNm6",
+            tableName: "Campaign"
+          }
+        ]
       }
     },
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-json",
     {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `data`,
-        path: `${__dirname}/src/portfolio/data/`
-      }
-    },
-    {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: "gatsby-plugin-manifest",
       options: {
         name: "Makefolio",
         short_name: "Makefolio",
@@ -52,16 +60,16 @@ module.exports = {
         orientation: "portrait"
       }
     },
-    `gatsby-plugin-sass`,
+    "gatsby-plugin-sass",
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: "gatsby-plugin-google-analytics",
       options: {
         trackingId: "UA-XXXXXXXX-X",
         // Setting this parameter is optional (requried for some countries such as Germany)
         anonymize: true
       }
     },
-    `gatsby-plugin-sitemap`
+    "gatsby-plugin-sitemap"
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',

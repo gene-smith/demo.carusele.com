@@ -1,223 +1,69 @@
 import React from "react";
-import portfolioData from "../portfolio/data/portfolioData";
-
+import { StaticQuery, graphql } from "gatsby"
 import "./style.scss";
 import "bulma-helpers/css/bulma-helpers.min.css";
 
-import Img from "gatsby-image";
-import { StaticQuery, graphql } from "gatsby";
-
-const Portfolio = () => (
-  <div>
-    <p>hello</p>
-  </div>
-);
-
-export default Portfolio;
-
-/*
-Steps:
-1. create GraphQL query to transform images in /portfolio/img folder
-  -- I guess do a query for each image and give it a label (ie, ChekmarkEats-4)
-2. create GraphQL query to read portfolioData.json
-  -- update Json file with image labels instead of paths 
-3. combine
-
-*/
-
-/* const Portfolio = () => (
-  <div>
-    {portfolioData.map(function(d, index) {
-      return (
-        <div className="card" key={d.id}>
-          <div className="card-image">
-            <figure className="image is-4by3">
-              <img src={d.image.src} alt="campaign photo" />
-            </figure>
-          </div>
-          <div className="card-content">
-            <div className="media-content">
-              <p className="title is-4">{d.name}</p>
-              <p className="subtitle is-6">{d.campaign}</p>
-            </div>
-          </div>
-        </div>
-      );
-    })}
-  </div>
-); */
-
-/* 
-
-WORKING TILE-BASED COMPONENT
-const Midsection = () => (
-  <div>
-    <section className="section">
-      <div className="container">
-        <div className="tile is-ancestor">
-          <div className="tile is-parent">
-            {portfolioData.map(function(d, index) {
-              return (
-                <article className="tile is-child box">
-                  <p className="title" key={d.id}>
-                    {d.name}
-                  </p>
-                  <p className="subtitle" key={d.id}>
-                    {d.campaign}
-                  </p>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-);
-
-WORKING MANUAL COMPONENT
-
-const Midsection = () => (
-  <div>
-    <section className="section">
-      <div className="container">
-        <div className="tile is-ancestor">
-          <div className="tile is-parent">
-            <article className="tile is-child box">
-              <p className="title">Hello World</p>
-              <p className="subtitle">What is up?</p>
-            </article>
-          </div>
-          <div className="tile is-parent">
-            <article className="tile is-child box">
-              <p className="title">Foo</p>
-              <p className="subtitle">Bar</p>
-            </article>
-          </div>
-          <div className="tile is-parent">
-            <article className="tile is-child box">
-              <p className="title">Third column</p>
-              <p className="subtitle">With some content</p>
-              <div className="content">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-                  ornare magna eros, eu pellentesque tortor vestibulum ut.
-                  Maecenas non massa sem. Etiam finibus odio quis feugiat
-                  facilisis.
-                </p>
+export default () => (
+  <StaticQuery
+    query={graphql`
+      {
+        allAirtable(
+          filter: {data: {Campaign: {elemMatch: {data: {Campaign_Name: {eq: "Infinitive at Walgreens"}}}}}}
+          ) {
+          nodes {
+            id
+            data {
+              Entry_Name
+              Campaign {
+                data {
+                  Campaign_Name
+                }
+              }
+              Image {
+                thumbnails {
+                  full {
+                    url
+                  }
+                }
+              }
+              URL
+              Post_Type {
+                data {
+                  Post_Type_Name
+                }
+              }
+            }
+          }
+        }
+      }
+    `}
+    render={data => (
+      <div className="columns is-multiline">
+        {data.allAirtable.nodes.map(node => (
+          <div className="column is-one-third">
+            <div className="card" key={node.id}>
+              <div className="card-image">
+                <figure className="image">
+                  <img
+                    src={node.data.Image[0].thumbnails.full.url}
+                    alt={node.data.Campaign[0].data.Campaign_Name}
+                  />
+                </figure>
               </div>
-            </article>
-          </div>
-        </div>
-
-        <div className="tile is-ancestor">
-          <div className="tile is-vertical is-8">
-            <div className="tile">
-              <div className="tile is-parent is-vertical">
-                <article className="tile is-child box">
-                  <p className="title">Vertical tiles</p>
-                  <p className="subtitle">Top box</p>
-                </article>
-                <article className="tile is-child box">
-                  <p className="title">Vertical tiles</p>
-                  <p className="subtitle">Bottom box</p>
-                </article>
-              </div>
-              <div className="tile is-parent">
-                <article className="tile is-child box">
-                  <p className="title">Middle box</p>
-                  <p className="subtitle">With an image</p>
-                  <figure className="image is-4by3">
-                    <img
-                      src="https://bulma.io/images/placeholders/640x480.png"
-                      alt=""
-                    />
-                  </figure>
-                </article>
-              </div>
-            </div>
-            <div className="tile is-parent">
-              <article className="tile is-child box">
-                <p className="title">Wide column</p>
-                <p className="subtitle">Aligned with the right column</p>
-                <div className="content">
+              <div className="card-content">
+                <div className="media-content">
+                  <p className="title is-4">{node.data.Entry_Name}</p>
+                  <p className="subtitle is-6">{node.data.Campaign[0].data.Campaign_Name}</p>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Proin ornare magna eros, eu pellentesque tortor vestibulum
-                    ut. Maecenas non massa sem. Etiam finibus odio quis feugiat
-                    facilisis.
-                  </p>
-                </div>
-              </article>
-            </div>
-          </div>
-          <div className="tile is-parent">
-            <article className="tile is-child box">
-              <div className="content">
-                <p className="title">Tall column</p>
-                <p className="subtitle">With even more content</p>
-                <div className="content">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Etiam semper diam at erat pulvinar, at pulvinar felis
-                    blandit. Vestibulum volutpat tellus diam, consequat gravida
-                    libero rhoncus ut. Morbi maximus, leo sit amet vehicula
-                    eleifend, nunc dui porta orci, quis semper odio felis ut
-                    quam.
-                  </p>
-                  <p>
-                    Suspendisse varius ligula in molestie lacinia. Maecenas
-                    varius eget ligula a sagittis. Pellentesque interdum, nisl
-                    nec interdum maximus, augue diam porttitor lorem, et
-                    sollicitudin felis neque sit amet erat. Maecenas imperdiet
-                    felis nisi, fringilla luctus felis hendrerit sit amet.
-                    Aenean vitae gravida diam, finibus dignissim turpis. Sed
-                    eget varius ligula, at volutpat tortor.
-                  </p>
-                  <p>
-                    Integer sollicitudin, tortor a mattis commodo, velit urna
-                    rhoncus erat, vitae congue lectus dolor consequat libero.
-                    Donec leo ligula, maximus et pellentesque sed, gravida a
-                    metus. Cras ullamcorper a nunc ac porta. Aliquam ut aliquet
-                    lacus, quis faucibus libero. Quisque non semper leo.
+                    <a className="button is-primary" href={node.data.URL} target="_blank">Button</a>
                   </p>
                 </div>
               </div>
-            </article>
+            </div>
           </div>
-        </div>
-
-        <div className="tile is-ancestor">
-          <div className="tile is-parent">
-            <article className="tile is-child box">
-              <p className="title">Side column</p>
-              <p className="subtitle">With some content</p>
-              <div className="content">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-                  ornare magna eros, eu pellentesque tortor vestibulum ut.
-                  Maecenas non massa sem. Etiam finibus odio quis feugiat
-                  facilisis.
-                </p>
-              </div>
-            </article>
-          </div>
-          <div className="tile is-parent is-8">
-            <article className="tile is-child box">
-              <p className="title">Main column</p>
-              <p className="subtitle">With some content</p>
-              <div className="content">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-                  ornare magna eros, eu pellentesque tortor vestibulum ut.
-                  Maecenas non massa sem. Etiam finibus odio quis feugiat
-                  facilisis.
-                </p>
-              </div>
-            </article>
-          </div>
-        </div>
+        ))};
+      }
       </div>
-    </section>
-  </div>
-); */
+    )}
+  />
+)
